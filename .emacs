@@ -173,9 +173,14 @@ Now it correctly stops at the beginning of the line when the pointer is at the f
 ;; and let this demonstration work
 (text-mode)
 
+;; -- stops emacs from auto-copying selection
+(setq mouse-drag-copy-region nil)
 
 ;; -- adds line numbers
 (require 'linum+)
+
+;; don't treat _ as word delimiter for double click selection
+(modify-syntax-entry ?_ "w")
 
 ;; -- windows esque redo plugin with vis branching
 (require 'undo-tree)
@@ -203,6 +208,15 @@ Now it correctly stops at the beginning of the line when the pointer is at the f
 ;; --  my custom keys
 (defun math-keys-help ()
 (message "Keys Engage!")
+
+;; -- make buffer names unique
+(require 'uniquify) 
+(setq 
+  uniquify-buffer-name-style 'post-forward
+  uniquify-separator ":")
+
+; to answer y or n instead of yes or no :-P ...I'm to lazy
+(defalias 'yes-or-no-p 'y-or-n-p) 
 
 ;;move
 (define-key global-map  [\M-up] 'scroll-down)
