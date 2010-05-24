@@ -1,1 +1,80 @@
 This is a WIP.  DO NOT USE
+
+Drupal Features
+
+* Drupal Function Lookup (coming)
+* Drupal AutoComplete
+* Drupal Coding Standards
+* Drupal Snippits (coming)
+
+Features
+
+* Smart Indenting
+* Windows Keyboard Shortcuts
+* Line Numbers
+* History Visual
+* State Saving
+* IDE like navigation
+* Firefox esc isearch
+* Improved occur
+* Smart Cursor
+* ido mode
+* cygwin for command line
+* menubar plus
+* Code Completion
+* Snippits
+* Zen Coding
+* Find File in Project
+* Tortoise SVN
+
+Sane Key Config
+
+scroll M-up / M-down
+moveword M-left / M-right
+
+undo C-z
+redo C-y
+undohist C-S-z
+copy C-c
+paste C-v
+cut C-x
+killline M-k
+
+isearch C-f
+find-replace C-S-f
+
+save C-s
+new C-n
+open file C-o
+find in project C-S-o
+nav M-o
+
+smart single window F5
+split frame - F6
+split frame | F7
+close window F8
+enlarge window - F9
+enlarge window | F10
+
+choose buffer C-space
+close buffer C-0
+next buffer C-right
+prev buffer C-left
+
+snippit tab
+code completion S-space
+zen coding M-z
+jump to function C-S-space
+look up php function C-`
+look up drupal function C-~
+shell F4
+
+svn commit F11
+svn log F12
+
+set a bookmark F1
+unset bookmark F3
+jump to bookmark F2
+
+tab in tab
+tab out S-tab
