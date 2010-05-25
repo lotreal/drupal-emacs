@@ -37,6 +37,7 @@ redo C-y
 undohist C-S-z
 copy C-c
 paste C-v
+pastehist C-S-V
 cut C-x
 killline M-k
 
@@ -71,6 +72,8 @@ shell F4
 
 svn commit F11
 svn log F12
+git commit S-F11
+git log S-F12
 
 set a bookmark F1
 unset bookmark F3
