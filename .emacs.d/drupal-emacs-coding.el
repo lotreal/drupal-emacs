@@ -22,7 +22,7 @@
   (c-set-offset 'arglist-cont-nonempty 'c-lineup-math) ; for DBTNG fields and values
   ; More Drupal / PHP specific customizations here
   ;; -- this is unstable right now
-  ;;(srb-adaptive-wrap-mode 1)
+  (srb-adaptive-wrap-mode 1)
   (linum-mode 1)
   (imenu-add-menubar-index)
 )
@@ -32,4 +32,3 @@
   (add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\|php\\|inc\\)$" . drupal-mode))
   (add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
 )
-

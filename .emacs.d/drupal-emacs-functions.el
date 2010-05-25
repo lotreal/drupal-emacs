@@ -120,3 +120,16 @@
         (progn (comint-send-string (get-buffer-process buf)
                                    (concat "cd \"" dir "\"\r"))
                (setq list-buffers-directory dir)))))
+
+
+;; -- scroll with half pages instead of full pages
+(defun window-half-height ()
+  (max 1 (/ (1- (window-height (selected-window))) 2)))
+
+(defun scroll-up-half ()
+  (interactive)
+  (scroll-up (window-half-height)))
+
+(defun scroll-down-half ()         
+  (interactive)                    
+  (scroll-down (window-half-height)))

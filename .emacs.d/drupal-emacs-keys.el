@@ -3,8 +3,12 @@
   (message "Keys Engage!")
 
   ;;move
-  (define-key global-map  [\M-up] 'scroll-down)
-  (define-key global-map  [\M-down] 'scroll-up)
+  ;;(define-key global-map  [\M-up] 'scroll-down)
+  ;;(define-key global-map  [\M-down] 'scroll-up)
+  (define-key global-map  [\M-up] 'scroll-down-half)
+  (define-key global-map  [\M-down] 'scroll-up-half)
+  (global-set-key [next] 'scroll-up-half)
+  (global-set-key [prior] 'scroll-down-half)
   ;;coding
   (global-set-key "\C-cbs" 'weblogger-start-entry)
   (global-set-key (kbd "M-z") 'zencoding-expand-line)
@@ -23,6 +27,7 @@
   (global-set-key (kbd "C-f") 'isearch-forward)
   (global-set-key (kbd "C-y") 'undo-tree-redo)
   (global-set-key (kbd "C-S-f") 'query-replace)
+  (global-set-key (kbd "C-S-v") 'browse-kill-ring)
   ;;windowing
   (define-key global-map  [\C-left] 'previous-buffer)
   (define-key global-map  [\C-right] 'next-buffer)
@@ -44,6 +49,8 @@
   (global-set-key (kbd "<f10>") 'enlarge-window)
   (global-set-key (kbd "<f11>") 'tortoise-svn-commit)
   (global-set-key (kbd "<f12>") 'tortoise-svn-log)
+  (global-set-key (kbd "<S-f11>") 'tortoise-git-commit)
+  (global-set-key (kbd "<S-f12>") 'tortoise-git-log)
   ;;misc
   (global-set-key (kbd "C-z") 'undo-tree-undo)
   (global-set-key (kbd "C-S-z") 'undo-tree-visualize)

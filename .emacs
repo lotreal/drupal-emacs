@@ -10,6 +10,8 @@
 ;; Turn off mouse interface early in startup to avoid momentary display
 ;; You really don't need these; trust me.
 
+(setq debug-on-error t)
+
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -34,8 +36,10 @@
 (require 'php-mode)
 (require 'auto-complete-config)
 (require 'tortoise-svn)
+(require 'tortoise-git)
 (require 'zencoding-mode)
 (require 'yasnippet)
+(require 'browse-kill-ring)
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -66,6 +70,10 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
 
 ;; ----------------------------------------------------------- misc settings
+
+;; -- tame the mouse scrolling a little
+(setq scroll-step 1)
+(setq scroll-conservatively 10000)
 
 ;; -- need explanaion
 (transient-mark-mode t)
