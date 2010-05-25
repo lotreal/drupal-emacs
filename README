@@ -40,15 +40,17 @@ paste C-v
 pastehist C-S-V
 cut C-x
 killline M-k
+google C-S-g
 
 isearch C-f
 find-replace C-S-f
 
 save C-s
+rename C-S-s
 new C-n
 open file C-o
 find in project C-S-o
-nav M-o
+nav C-S-n
 
 smart single window F5
 split frame - F6
@@ -64,11 +66,12 @@ prev buffer C-left
 
 snippit tab
 code completion S-space
-zen coding M-z
+zen coding C-S-x
 jump to function C-S-space
 look up php function C-`
 look up drupal function C-~
 shell F4
+comment C-{
 
 svn commit F11
 svn log F12
