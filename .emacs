@@ -40,6 +40,8 @@
 (require 'zencoding-mode)
 (require 'yasnippet)
 (require 'browse-kill-ring)
+(require 'repository-root)
+
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -70,6 +72,10 @@
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
 
 ;; ----------------------------------------------------------- misc settings
+
+;; -- set up repository detection
+(add-to-list 'repository-root-matchers repository-root-matcher/svn)
+(add-to-list 'repository-root-matchers repository-root-matcher/git)
 
 ;; -- tame the mouse scrolling a little
 (setq scroll-step 1)

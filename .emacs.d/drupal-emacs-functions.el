@@ -198,7 +198,7 @@ there's a region, all lines that region covers will be duplicated."
         (setq end (point)))
       (goto-char (+ origin (* (length region) arg) arg)))))
 
-;; google selection
+;; -- google selection
 (defun google ()
   "Googles a query or region if any."
   (interactive)
@@ -209,3 +209,32 @@ there's a region, all lines that region covers will be duplicated."
         (buffer-substring (region-beginning) (region-end))
       (read-string "Query: ")))))
 
+;; -- better window spliting
+(defun split-window-switch-buffer () (interactive)
+  "Split current window and display the two last buffers used."
+  (split-window)
+  (switch-to-buffer (other-buffer (current-buffer)))
+  )
+
+(defun hsplit-window-switch-buffer () (interactive)
+  "Split current window horizontally and display the two last buffers used."
+  (split-window-horizontally)
+  (switch-to-buffer (other-buffer (current-buffer)))
+  )
+
+;; -- fixes problem with cygwin and rgrep
+;; Prevent issues with the Windows null device (NUL)
+;; when using cygwin find with rgrep.
+(defadvice grep-compute-defaults (around grep-compute-defaults-advice-null-device)
+  "Use cygwin's /dev/null as the null-device."
+  (let ((null-device "/dev/null"))
+	ad-do-it))
+(ad-activate 'grep-compute-defaults)
+
+;; -- find file in current repository
+(defun find-file-in-repository ()
+  (interactive)
+  "Calls Find-in-File within the current repository root."
+  (setq workspace-dir (repository-root buffer-file-name))
+  (ifind-mode)
+  )
