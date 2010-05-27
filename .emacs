@@ -41,7 +41,7 @@
 (require 'yasnippet)
 (require 'browse-kill-ring)
 (require 'repository-root)
-
+(require 'php-electric)
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -62,7 +62,7 @@
 ;; -- load the saved windows automatically on boot
 (add-hook 'window-setup-hook 'resume-windows)
 
-;; -- load my keybindsings w a hook for php
+;; -- load my keybgindsings w a hook for php
 (add-hook 'php-mode-hook 'math-keys-help)
 
 ;; -- load my keybindings initially

@@ -25,6 +25,7 @@
   (srb-adaptive-wrap-mode 1)
   (linum-mode 1)
   (imenu-add-menubar-index)
+  (php-electric-mode)
 )
 (defun setup-php ()
   ; PHP
