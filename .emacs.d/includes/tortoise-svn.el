@@ -15,6 +15,10 @@
 
 (defun tortoise-svn-log ()
   (interactive)
+  (tortoise-svn-log-select (repository-root buffer-file-name)))
+
+(defun tortoise-svn-log-repository ()
+  (interactive)
   (tortoise-svn-log-select (buffer-file-name)))
 
 (defun tortoise-svn-log-select (filename &optional wildcards)
@@ -32,6 +36,10 @@
 (defun tortoise-svn-commit ()		; add log?
   (interactive)
   (tortoise-svn-commit-select (buffer-file-name)))
+
+(defun tortoise-svn-commit-repository ()		; add log?
+  (interactive)
+  (tortoise-svn-commit-select (repository-root buffer-file-name)))
 
 (defun tortoise-svn-commit-select (filename &optional wildcards)
   (interactive (find-file-read-args "Find file: " t))

@@ -54,6 +54,12 @@
   (global-set-key (kbd "<f12>") 'tortoise-svn-log)
   (global-set-key (kbd "<S-f11>") 'tortoise-git-commit)
   (global-set-key (kbd "<S-f12>") 'tortoise-git-log)
+  (global-set-key (kbd "<C-S-f11>") 'tortoise-svn-commit-repository)
+  (global-set-key (kbd "<C-S-f12>") 'tortoise-svn-log-repository)
+  (define-key ctl-x-map (kbd "<f11>") 'tortoise-git-commit-repository)
+  (define-key ctl-x-map (kbd "<f12>") 'tortoise-git-log-repository)
+  ;;(global-set-key (kbd "C-x <f11>") 'tortoise-git-commit-repository)
+  ;;(global-set-key (kbd "C-x <f12>") 'tortoise-git-log-repository)
   ;;misc
   (global-set-key (kbd "C-z") 'undo-tree-undo)
   (global-set-key (kbd "C-S-z") 'undo-tree-visualize)

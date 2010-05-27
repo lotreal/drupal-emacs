@@ -236,5 +236,10 @@ there's a region, all lines that region covers will be duplicated."
   (interactive)
   "Calls Find-in-File within the current repository root."
   (setq workspace-dir (repository-root buffer-file-name))
-  (ifind-mode)
-  )
+  (ifind-mode))
+
+;; -- find file in current repository
+(defun rgrep-in-files-in-repository-drupal (pattern)
+  "Calls rgrep within the current repository root."
+  (interactive "sGrep pattern: ")
+  (rgrep pattern "*.php *.module *.php *.inc *.js" (repository-root buffer-file-name)))

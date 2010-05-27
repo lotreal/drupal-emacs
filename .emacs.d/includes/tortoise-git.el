@@ -21,6 +21,10 @@
   (interactive)
   (tortoise-git-log-select (buffer-file-name)))
 
+(defun tortoise-git-log-repository ()
+  (interactive)
+  (tortoise-git-log-select (repository-root buffer-file-name)))
+
 (defun tortoise-git-log-select (filename &optional wildcards)
   (interactive (find-file-read-args "Find file: " t))
   (tortoise-git-command "log" filename))
@@ -36,6 +40,10 @@
 (defun tortoise-git-commit () 
   (interactive)
   (tortoise-git-command "commit" (buffer-file-name)))
+
+(defun tortoise-git-commit-repository () 
+  (interactive)
+  (tortoise-git-command "commit" (repository-root buffer-file-name)))
 
 (defun tortoise-git-commit-select (filename &optional wildcards)
 (interactive (find-file-read-args "Find file: " t))
