@@ -19,9 +19,10 @@
   (global-set-key (kbd "C-S-n") 'nav)
   (global-set-key (kbd "C-{") 'my-comment-dwim)
   ;;basic
+
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
   (global-set-key (kbd "RET") 'newline-and-indent)
-  (global-set-key (kbd "C-S-o") 'ifind-mode)
+  (global-set-key (kbd "C-S-o") 'find-file-in-repository)
   (global-set-key (kbd "C-o") 'find-file)
   (global-set-key (kbd "C-s") 'save-buffer)
   (global-set-key (kbd "C-S-s") 'rename-file-and-buffer)
@@ -37,13 +38,14 @@
   (global-set-key (kbd "<C-tab>") 'next-multiframe-window)
   (global-set-key (kbd "<C-S-tab>") 'previous-multiframe-window)
   (global-set-key (kbd "C-SPC") 'switch-to-buffer)
-  (global-set-key (kbd "C-n") 'switch-to-buffer)
+  (global-set-key (kbd "C-n") 'shell-here)
   (global-set-key (kbd "C-0") 'kill-buffer)
   ;;functions
   (global-set-key (kbd "<f1>") 'bm-toggle)
   (global-set-key (kbd "<f2>") 'bm-next)
   (global-set-key (kbd "<f3>") 'bm-previous)
-  (global-set-key (kbd "<f4>") 'shell-here)
+  (global-set-key (kbd "<f4>") 'rgrep)
+  (global-set-key (kbd "<S-f4>") 'rgrep-in-files-in-repository-drupal)
   (global-set-key (kbd "<f5>") 'toggle-windows-split)
   (global-set-key (kbd "<f6>") 'hsplit-window-switch-buffer)
   (global-set-key (kbd "<f7>") 'split-window-switch-buffer)

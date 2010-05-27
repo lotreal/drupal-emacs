@@ -47,9 +47,11 @@ find-replace C-S-f
 
 save C-s
 rename C-S-s
-new C-n
+new C-space
 open file C-o
-find in project C-S-o
+find file in repository C-S-o
+find in file  F4
+find in file repository S-F4
 nav C-S-n
 
 smart single window F5
@@ -70,13 +72,17 @@ zen coding C-S-x
 jump to function C-S-space
 look up php function C-`
 look up drupal function C-~
-shell F4
+shell C-n
 comment C-{
 
 svn commit F11
 svn log F12
 git commit S-F11
 git log S-F12
+svn commit repository C-S-F11
+svn log repository C-S-F12
+git commit repository C-x F11
+git log repository C-x F12
 
 set a bookmark F1
 unset bookmark F3
