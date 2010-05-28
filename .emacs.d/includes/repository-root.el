@@ -155,6 +155,10 @@ when using this rule."
   "Mercurial repository root directory matching criterion."
   )
 
+(defconst repository-root-matcher/drupal (cons 'repository-root-rule/root-contains "includes/bootstrap.inc")
+  "Drupal install root directory matching criterion."
+  )
+
 (defconst repository-root-matcher/darcs (cons 'repository-root-rule/root-contains "_darcs/")
   "Darcs repository root directory matching criterion."
   )

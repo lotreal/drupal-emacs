@@ -99,6 +99,7 @@
 ;; -- set up repository detection
 (add-to-list 'repository-root-matchers repository-root-matcher/svn)
 (add-to-list 'repository-root-matchers repository-root-matcher/git)
+(add-to-list 'repository-root-matchers repository-root-matcher/drupal)
 
 ;; -- tame the mouse scrolling a little
 (setq scroll-step 1)
