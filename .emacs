@@ -42,6 +42,8 @@
 (require 'browse-kill-ring)
 (require 'repository-root)
 (require 'php-electric)
+(require 'css-mode)
+
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -54,8 +56,8 @@
 (load-file "~/.emacs.d/drupal-emacs-ui.el")
 (load-file "~/.emacs.d/drupal-emacs-indenting.el")
 
-(load-file "~/.emacs.d/drupal-emacs-sys-linux.el")
-(load-file "~/.emacs.d/drupal-emacs-sys-windows.el")
+;;(load-file "~/.emacs.d/drupal-emacs-sys-linux.el")
+(load-file "~/.emacs.d/emacs-nt-window.el")
 
 ;; ----------------------------------------------------------- hooks
 
@@ -66,12 +68,33 @@
 (add-hook 'php-mode-hook 'math-keys-help)
 
 ;; -- load my keybindings initially
-(math-keys-help)
+	(math-keys-help)
 
 ;; -- zen coding
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
 
+;; ----------------------------------------------------------- system spec
+
+;; You can keep system- or user-specific customizations here
+;; -- stolen from the emacs started kit
+;;(setq system-specific-config (concat dotfiles-dir system-name ".el")
+;;      user-specific-config (concat dotfiles-dir user-login-name ".el")
+;;      emacsv-specific-config (concat dotfiles-dir (emacs-type) ".el")
+;;      user-specific-dir (concat dotfiles-dir user-login-name))
+;;(add-to-list 'load-path user-specific-dir)
+
+;;(if (file-exists-p system-specific-config) (load system-specific-config))
+;;(if (file-exists-p user-specific-config) (load user-specific-config))
+;;(if (file-exists-p emacsv-specific-config) (load emacsv-specific-config))
+;;(if (file-exists-p user-specific-dir)
+;; (mapc #'load (directory-files user-specific-dir nil ".*el$")))
+
 ;; ----------------------------------------------------------- misc settings
+
+;; -- enable recent files menu
+(require 'recentf)
+(setq recentf-auto-cleanup 'never)
+(recentf-mode 1)
 
 ;; -- set up repository detection
 (add-to-list 'repository-root-matchers repository-root-matcher/svn)
@@ -132,3 +155,5 @@
 ;; -- setup our php mode
 (setup-php)
 
+;; -- setup custom css mode
+(setup-css)

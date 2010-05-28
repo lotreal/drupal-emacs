@@ -33,3 +33,17 @@
   (add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\|php\\|inc\\)$" . drupal-mode))
   (add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
 )
+
+(defun my-css-mode ()
+  "Drupal php-mode."
+  (interactive)
+  (css-mode)
+  (set 'tab-width 2)
+  (set 'c-basic-offset 2)
+  (srb-adaptive-wrap-mode 1)
+  (linum-mode 1)
+  
+)
+(defun setup-css ()
+  (add-to-list 'auto-mode-alist '("\\.css" . my-css-mode))
+)
