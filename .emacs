@@ -10,7 +10,7 @@
 ;; Turn off mouse interface early in startup to avoid momentary display
 ;; You really don't need these; trust me.
 
-;;(setq debug-on-error t)
+(setq debug-on-error t)
 
 ;;(setq menu-bar-mode 1)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -43,7 +43,7 @@
 (require 'repository-root)
 (require 'php-electric)
 (require 'css-mode)
-
+(require 'css-complete)
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -68,7 +68,7 @@
 (add-hook 'php-mode-hook 'math-keys-help)
 
 ;; -- load my keybindings initially
-	(math-keys-help)
+(math-keys-help)
 
 ;; -- zen coding
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
@@ -91,15 +91,14 @@
 
 ;; ----------------------------------------------------------- misc settings
 
-;; -- enable recent files menu
-(require 'recentf)
-(setq recentf-auto-cleanup 'never)
-(recentf-mode 1)
+;; -- might fix rgrep
+(grep-compute-defaults)
 
-;; -- set up repository detection
-(add-to-list 'repository-root-matchers repository-root-matcher/svn)
-(add-to-list 'repository-root-matchers repository-root-matcher/git)
-(add-to-list 'repository-root-matchers repository-root-matcher/drupal)
+
+;; -- enable recent files menu
+;;(require 'recentf)
+;;(setq recentf-auto-cleanup 'never)
+;;(recentf-mode 1)
 
 ;; -- tame the mouse scrolling a little
 (setq scroll-step 1)
@@ -129,9 +128,6 @@
 ;; -- windows esque redo plugin with vis branching
 (global-undo-tree-mode)
 
-;; -- set up window saving
-(win:startup-with-window)
-
 ; to answer y or n instead of yes or no :-P ...I'm to lazy
 (defalias 'yes-or-no-p 'y-or-n-p) 
 
@@ -158,3 +154,16 @@
 
 ;; -- setup custom css mode
 (setup-css)
+
+;; -- set up repository detection
+(add-to-list 'repository-root-matchers repository-root-matcher/svn)
+(add-to-list 'repository-root-matchers repository-root-matcher/git)
+
+;; -- custom drupal install detection
+(defconst repository-root-matcher/drupal (cons 'repository-root-rule/root-contains "includes/bootstrap.inc")
+  "Drupal install root directory matching criterion."
+  )
+(add-to-list 'repository-root-matchers repository-root-matcher/drupal)
+
+;; -- set up window saving !! RUNLAST
+(win:startup-with-window)

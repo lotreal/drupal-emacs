@@ -235,11 +235,23 @@ there's a region, all lines that region covers will be duplicated."
 (defun find-file-in-repository ()
   (interactive)
   "Calls Find-in-File within the current repository root."
-  (setq workspace-dir (repository-root buffer-file-name))
+  (if (repository-root buffer-file-name)
+      (setq workspace-dir (repository-root buffer-file-name))
+      (setq workspace-dir (concat "\"" (file-name-directory buffer-file-name) "\"")))
   (ifind-mode))
 
 ;; -- find file in current repository
 (defun rgrep-in-files-in-repository-drupal (pattern)
   "Calls rgrep within the current repository root."
   (interactive "sGrep pattern: ")
-  (rgrep pattern "*.php *.module *.php *.inc *.js" (repository-root buffer-file-name)))
+  (if (repository-root buffer-file-name)
+      (rgrep pattern "*.php *.module *.php *.inc *.js *.el *.html" (repository-root buffer-file-name))
+      (rgrep pattern "*" (file-name-directory buffer-file-name))))
+
+;; -- find file in current repository
+(defun find-function-at-point-in-repository-drupal ()
+  "Finds the definition of the function under cursor."
+  (interactive)
+  (if (repository-root buffer-file-name)
+      (rgrep (concat "function " (current-word)) "*.php *.module *.php *.inc *.js" (repository-root buffer-file-name))
+      (rgrep (concat "function " (current-word)) "*" (file-name-directory buffer-file-name))))

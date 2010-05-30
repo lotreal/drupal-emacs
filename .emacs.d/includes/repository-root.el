@@ -155,10 +155,6 @@ when using this rule."
   "Mercurial repository root directory matching criterion."
   )
 
-(defconst repository-root-matcher/drupal (cons 'repository-root-rule/root-contains "includes/bootstrap.inc")
-  "Drupal install root directory matching criterion."
-  )
-
 (defconst repository-root-matcher/darcs (cons 'repository-root-rule/root-contains "_darcs/")
   "Darcs repository root directory matching criterion."
   )
@@ -170,7 +166,6 @@ when using this rule."
 (defconst repository-root-matcher/autoconf (cons 'repository-root-rule/root-contains-regexp "configure\\(\\.ac\\)?")
   "Autoconf source package root directory matching criterion."
   )
-
 (defconst repository-root-matcher/bk (cons 'repository-root-rule/root-contains "BitKeeper/etc/SCCS/s.config")
   "BitKeeper repository root directory matching criterion."
   )
