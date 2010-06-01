@@ -2,10 +2,11 @@ This is a WIP.  DO NOT USE
 
 Drupal Features
 
-* Drupal Function Lookup (coming)
+* Find in Drupal
+* Drupal Documentation
+* Drupal Project Dwareness
 * Drupal AutoComplete
 * Drupal Coding Standards
-* Drupal Snippits (coming)
 
 Features
 
@@ -49,9 +50,10 @@ save C-s
 rename C-S-s
 new C-space
 open file C-o
-find file in repository C-S-o
+find file in project C-S-o
 find in file  F4
-find in file repository S-F4
+find in file project S-F4
+find function definition
 nav C-S-n
 
 smart single window F5

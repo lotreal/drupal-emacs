@@ -13,6 +13,7 @@
   "Drupal php-mode."
   (interactive)
   (php-mode)
+  (php-electric-mode)
   (message "Drupal mode activated.")
   (set 'tab-width 2)
   (set 'c-basic-offset 2)
@@ -25,7 +26,8 @@
   (srb-adaptive-wrap-mode 1)
   (linum-mode 1)
   (imenu-add-menubar-index)
-  (php-electric-mode)
+  (math-keys-help)
+  (show-paren-mode)
 )
 (defun setup-php ()
   ; PHP
@@ -39,6 +41,7 @@
   (interactive)
   (css-mode)
   (set 'tab-width 2)
+  (setq css-indent-offset 2)
   (set 'c-basic-offset 2)
   (srb-adaptive-wrap-mode 1)
   (linum-mode 1)

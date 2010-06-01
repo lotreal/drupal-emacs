@@ -65,7 +65,7 @@
 (add-hook 'window-setup-hook 'resume-windows)
 
 ;; -- load my keybgindsings w a hook for php
-(add-hook 'php-mode-hook 'math-keys-help)
+;;(add-hook 'php-mode-hook 'math-keys-help)
 
 ;; -- load my keybindings initially
 (math-keys-help)
@@ -167,3 +167,11 @@
 
 ;; -- set up window saving !! RUNLAST
 (win:startup-with-window)
+
+
+
+
+
+
+
+
