@@ -12,9 +12,7 @@
 
 (setq debug-on-error t)
 
-;;(setq menu-bar-mode 1)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-;;(setq scroll-bar-mode 1)
 
 ;; -- main plugin directory
 (add-to-list 'load-path "~/.emacs.d/includes")
@@ -50,9 +48,9 @@
 (load "~/.emacs.d/includes/ifind-mode.el")
 
 (load-file "~/.emacs.d/drupal-emacs-sys-type.el")
-(load-file "~/.emacs.d/drupal-emacs-coding.el")
 (load-file "~/.emacs.d/drupal-emacs-functions.el")
 (load-file "~/.emacs.d/drupal-emacs-keys.el")
+(load-file "~/.emacs.d/drupal-emacs-coding.el")
 (load-file "~/.emacs.d/drupal-emacs-ui.el")
 (load-file "~/.emacs.d/drupal-emacs-indenting.el")
 
@@ -63,12 +61,6 @@
 
 ;; -- load the saved windows automatically on boot
 (add-hook 'window-setup-hook 'resume-windows)
-
-;; -- load my keybgindsings w a hook for php
-;;(add-hook 'php-mode-hook 'math-keys-help)
-
-;; -- load my keybindings initially
-(math-keys-help)
 
 ;; -- zen coding
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
@@ -91,14 +83,47 @@
 
 ;; ----------------------------------------------------------- misc settings
 
+;; -- store things
+(defun emacs-session-filename (SESSION-ID)
+  (concat "~/.emacs.d/cache/session." SESSION-ID))
+(setq save-place-file "~/.emacs.d/cache/saveplace")
+(setq savehist-file "~/.emacs.d/cache/savehist")
+(setq recentf-save-file "~/.emacs.d/cache/recentf")
+(setq auto-save-list-file-prefix "~/.emacs.d/cache/auto-save-list/.saves-")
+(setq backup-directory-alist '(("." . "~/.emacs.d/cache/backups")))
+
 ;; -- might fix rgrep
 (grep-compute-defaults)
 
+;; savehist: save some history
+(setq savehist-additional-variables    ;; also save...
+  '(search ring regexp-search-ring)    ;; ... my search entries
+  savehist-autosave-interval 60)        ;; save every minute (default: 5 min)
+(savehist-mode t)                      ;; do customization before activation
+
+;; -- save place in file
+(require 'saveplace)
+(setq-default save-place t)
 
 ;; -- enable recent files menu
-;;(require 'recentf)
-;;(setq recentf-auto-cleanup 'never)
-;;(recentf-mode 1)
+(require 'recentf)    ;; save recently used files
+(setq
+  recentf-max-saved-items 100     ;; max save 100
+  recentf-max-menu-items 15)      ;; max 15 in menu
+(recentf-mode t)                  ;; turn it on
+
+;; backups
+(setq make-backup-files t ;; do make backups
+  backup-by-copying t     ;; and copy them here
+  version-control t
+  kept-new-versions 2
+  kept-old-versions 5
+  delete-old-versions t)
+
+;; -- highlight line mode
+(global-hl-line-mode 1)
+(set-face-background 'hl-line "#111")  ;; Emacs 22 Only
+
 
 ;; -- tame the mouse scrolling a little
 (setq scroll-step 1)
@@ -115,6 +140,9 @@
 
 ;; -- set my global ta width to 2
 (setq my-tab-width 2)
+
+;; -- show file size
+(size-indication-mode t)
 
 ;; -- Show line-number in the mode line
 (line-number-mode 1)
@@ -149,11 +177,15 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
-;; -- setup our php mode
+;; -- setup our coding modes
 (setup-php)
-
-;; -- setup custom css mode
 (setup-css)
+(setup-js)
+
+;; -- show matching braces
+(show-paren-mode)
+(set-face-background 'show-paren-match-face "#000000")
+(set-face-attribute 'show-paren-match-face nil :weight 'bold)
 
 ;; -- set up repository detection
 (add-to-list 'repository-root-matchers repository-root-matcher/svn)
@@ -167,11 +199,3 @@
 
 ;; -- set up window saving !! RUNLAST
 (win:startup-with-window)
-
-
-
-
-
-
-
-

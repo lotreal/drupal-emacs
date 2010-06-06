@@ -2,7 +2,16 @@
 (require 'color-theme)
 (setq color-theme-is-global t)
 (color-theme-initialize)
-(color-theme-gruber-darker)
+(color-theme-twilight)
+
+(setq ;; scrolling
+  scroll-margin 0                        ;; do smooth scrolling, ...
+  scroll-conservatively 100000           ;; ... the defaults ...
+  scroll-up-aggressively 0               ;; ... are very ...
+  scroll-down-aggressively 0             ;; ... annoying
+  scroll-preserve-screen-position t)     ;; preserve screen pos with C-v/M-v 
+
+
 
 ;; -- set the custom font
 (custom-set-faces
@@ -31,7 +40,7 @@
       (setq cursor-type djcb-normal-cursor-type))))
 (add-hook 'post-command-hook 'djcb-set-cursor-according-to-mode)
 
-;; ergomacs file menu + couple changes
+;; ;; ergomacs file menu + couple changes
 (setq menu-bar-file-menu
       '(keymap
 	(new-file menu-item "New" new-empty-buffer)
