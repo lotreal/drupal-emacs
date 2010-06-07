@@ -65,6 +65,10 @@
 ;; -- zen coding
 (add-hook 'sgml-mode-hook 'zencoding-mode) ;; Auto-start on any markup modes
 
+(autoload 'hideshowvis-enable "hideshowvis" "Highlight foldable regions")
+
+
+
 ;; ----------------------------------------------------------- system spec
 
 ;; You can keep system- or user-specific customizations here
@@ -90,7 +94,6 @@
 (setq savehist-file "~/.emacs.d/cache/savehist")
 (setq recentf-save-file "~/.emacs.d/cache/recentf")
 (setq auto-save-list-file-prefix "~/.emacs.d/cache/auto-save-list/.saves-")
-(setq backup-directory-alist '(("." . "~/.emacs.d/cache/backups")))
 
 ;; -- might fix rgrep
 (grep-compute-defaults)
@@ -117,8 +120,22 @@
   backup-by-copying t     ;; and copy them here
   version-control t
   kept-new-versions 2
+  backup-directory-alist '(("." . "~/.emacs.d/cache/backups"))
   kept-old-versions 5
   delete-old-versions t)
+(defun force-backup-of-buffer ()
+  (let ((buffer-backed-up nil))
+    (backup-buffer)))
+(add-hook 'before-save-hook  'force-backup-of-buffer)
+
+;; bookmarks
+(setq bm-highlight-style 'bm-highlight-only-fringe)
+(global-set-key (kbd "<left-fringe> <mouse-3>") #'(lambda(event)
+                                                    (interactive "e")
+                                                    (save-excursion
+                                                      (mouse-set-point event)
+                                                      (bm-toggle))))
+
 
 ;; -- highlight line mode
 (global-hl-line-mode 1)
@@ -169,6 +186,11 @@
           (lambda () 
             (set-process-query-on-exit-flag 
               (get-buffer-process (current-buffer)) nil))) 
+
+;; -- fring mode settings
+(modify-all-frames-parameters
+     (list (cons 'left-fringe 15)
+	   (cons 'right-fringe 0)))
 
 ;; -- this is so we can open files in same editor instance
 (server-start)

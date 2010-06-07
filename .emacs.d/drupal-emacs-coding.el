@@ -25,7 +25,9 @@
   ;; -- this is unstable right now
   ;;(srb-adaptive-wrap-mode 1)
   (linum-mode 1)
+  (visual-line-mode)
   (imenu-add-menubar-index)
+  (hideshowvis-enable)
 )
 (defun setup-php ()
   ; PHP
@@ -43,6 +45,8 @@
   (set 'c-basic-offset 2)
   ;;(srb-adaptive-wrap-mode 1)
   (linum-mode 1)
+  (hideshowvis-enable)
+  (visual-line-mode)
   
 )
 (defun setup-css ()
@@ -58,6 +62,8 @@
   (setq js2-mirror-mode t)
   (setq tab-width 2)
   (linum-mode 1)
+  (visual-line-mode)
+  (hideshowvis-enable)
   
 )
 (defun setup-js ()
@@ -65,8 +71,46 @@
   (add-to-list 'auto-mode-alist '("\\.js" . my-js-mode))
 )
 
-;;; taken from starter-kit-js.el --- Some helpful Javascript helpers
+;; hideshow +
+(define-fringe-bitmap 'hs-marker [0 24 24 126 126 24 24 0])
 
+(defcustom hs-fringe-face 'hs-fringe-face
+  "*Specify face used to highlight the fringe on hidden regions."
+  :type 'face
+  :group 'hideshow)
+
+(defface hs-fringe-face
+  '((t (:foreground "#888" :box (:line-width 2 :color "grey75" :style released-button))))
+  "Face used to highlight the fringe on folded regions"
+  :group 'hideshow)
+
+(defcustom hs-face 'hs-face
+  "*Specify the face to to use for the hidden region indicator"
+  :type 'face
+  :group 'hideshow)
+
+(defface hs-face
+  '((t (:background "#ff8" :box t)))
+  "Face to hightlight the ... area of hidden regions"
+  :group 'hideshow)
+
+(defun display-code-line-counts (ov)
+  (when (eq 'code (overlay-get ov 'hs))
+    (let* ((marker-string "*fringe-dummy*")
+           (marker-length (length marker-string))
+           (display-string (format "(%d)..." (count-lines (overlay-start ov) (overlay-end ov))))
+           )
+      (overlay-put ov 'help-echo "Hiddent text. C-c,= to show")
+      (put-text-property 0 marker-length 'display (list 'left-fringe 'hs-marker 'hs-fringe-face) marker-string)
+      (overlay-put ov 'before-string marker-string)
+      (put-text-property 0 (length display-string) 'face 'hs-face display-string)
+      (overlay-put ov 'display display-string)
+      )))
+
+(setq hs-set-up-overlay 'display-code-line-counts)
+
+
+;;; taken from starter-kit-js.el --- Some helpful Javascript helpers
 (eval-after-load 'js2-mode
   '(progn
 
