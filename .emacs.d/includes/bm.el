@@ -375,7 +375,7 @@ over overlays with lower priority.  *Don't* use negative number."
     (((class color)
       (background light)) (:foreground "White" :background "DarkOrange1"))
     (((class color)
-      (background dark))  (:foreground "Black" :background "DarkOrange1")))
+      (background dark))  (:foreground "DarkOrange1" :background "Black")))
   "Face used to highlight bookmarks in the fringe."
   :group 'bm)
 
@@ -387,7 +387,7 @@ over overlays with lower priority.  *Don't* use negative number."
     (((class color)
       (background light)) (:foreground "White" :background "DarkBlue"))
     (((class color)
-      (background dark))  (:foreground "White" :background "DarkBlue")))
+      (background dark))  (:foreground "LightBlue" :background "Black")))
   "Face used to highlight bookmarks in the fringe if bookmark is persistent."
   :group 'bm)
 
