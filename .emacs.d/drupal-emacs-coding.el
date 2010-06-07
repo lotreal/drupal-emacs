@@ -80,7 +80,7 @@
   :group 'hideshow)
 
 (defface hs-fringe-face
-  '((t (:foreground "#888" :box (:line-width 2 :color "grey75" :style released-button))))
+  '((t (:foreground "#4D4D4D" :box (:line-width 2 :color "grey75" :style released-button))))
   "Face used to highlight the fringe on folded regions"
   :group 'hideshow)
 
@@ -182,3 +182,45 @@
                     (current-column)))
                  (continued-expr-p js2-basic-offset)
                  (t 0)))))))
+
+
+
+;; -- save undo hist
+(defun save-undo-filename (orig-name)
+  "given a filename return the file name in which to save the undo list"
+  (concat (file-name-directory orig-name)
+          "."
+          (file-name-nondirectory orig-name)
+          ".undo"))
+
+(defun save-undo-list ()
+  "Save the undo list to a file"
+  (save-excursion
+    (ignore-errors
+      (let ((undo-to-save `(setq buffer-undo-list ',buffer-undo-list))
+            (undo-file-name (save-undo-filename (buffer-file-name))))
+        (find-file undo-file-name)
+        (erase-buffer)
+        (let (print-level
+              print-length)
+          (print undo-to-save (current-buffer)))
+        (let ((write-file-hooks (remove 'save-undo-list write-file-hooks)))
+          (save-buffer))
+        (kill-buffer))))
+  nil)
+
+(defvar handling-undo-saving nil)
+
+(defun load-undo-list ()
+  "load the undo list if appropriate"
+  (ignore-errors
+    (when (and
+           (not handling-undo-saving)
+           (null buffer-undo-list)
+           (file-exists-p (save-undo-filename (buffer-file-name))))
+      (let* ((handling-undo-saving t)
+             (undo-buffer-to-eval (find-file-noselect (save-undo-filename (buffer-file-name)))))
+        (eval (read undo-buffer-to-eval))))))
+
+(add-hook 'write-file-hooks 'save-undo-list)
+(add-hook 'find-file-hook 'load-undo-list)

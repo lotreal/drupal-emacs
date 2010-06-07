@@ -60,7 +60,7 @@
 (defconst hideshowvis-version "v0.2" "Version of hideshowvis minor mode")
 
 (defface hideshowvis-hidable-face
-  '((t (:foreground "#ccc" :box t)))
+  '((t (:foreground "#4D4D4D" :box t)))
   "Face to highlight foldable regions"
   :group 'hideshow)
 
