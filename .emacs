@@ -42,6 +42,8 @@
 (require 'php-electric)
 (require 'css-mode)
 (require 'css-complete)
+(require 'saveplace)
+(require 'recentf)
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -105,11 +107,9 @@
 (savehist-mode t)                      ;; do customization before activation
 
 ;; -- save place in file
-(require 'saveplace)
 (setq-default save-place t)
 
 ;; -- enable recent files menu
-(require 'recentf)    ;; save recently used files
 (setq
   recentf-max-saved-items 100     ;; max save 100
   recentf-max-menu-items 15)      ;; max 15 in menu
@@ -132,16 +132,14 @@
 (setq bm-highlight-style 'bm-highlight-only-fringe)
 (setq bm-buffer-persistence t)
 (global-set-key (kbd "<left-fringe> <mouse-3>") #'(lambda(event)
-                                                    (interactive "e")
-                                                    (save-excursion
-                                                      (mouse-set-point event)
-                                                      (bm-toggle))))
-
+  (interactive "e")
+  (save-excursion
+    (mouse-set-point event)
+    (bm-toggle))))
 
 ;; -- highlight line mode
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#111")  ;; Emacs 22 Only
-
 
 ;; -- tame the mouse scrolling a little
 (setq scroll-step 1)
@@ -163,7 +161,7 @@
 (size-indication-mode t)
 
 ;; -- Show line-number in the mode line
-(line-number-mode 1)
+(line-number-mode 0)
 
 ;; -- stops emacs from auto-copying selection
 (setq mouse-drag-copy-region nil)
@@ -173,6 +171,7 @@
 
 ;; -- windows esque redo plugin with vis branching
 (global-undo-tree-mode)
+;;(undo-list-transfer-to-tree)
 
 ; to answer y or n instead of yes or no :-P ...I'm to lazy
 (defalias 'yes-or-no-p 'y-or-n-p) 
@@ -191,7 +190,7 @@
 ;; -- fring mode settings
 (modify-all-frames-parameters
      (list (cons 'left-fringe 15)
-	   (cons 'right-fringe 0)))
+	   (cons 'right-fringe 3)))
 
 ;; -- this is so we can open files in same editor instance
 (server-start)

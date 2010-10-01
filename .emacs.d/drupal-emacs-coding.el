@@ -22,22 +22,20 @@
   (c-set-offset 'arglist-intro '+) ; for FAPI arrays and DBTNG
   (c-set-offset 'arglist-cont-nonempty 'c-lineup-math) ; for DBTNG fields and values
   ; More Drupal / PHP specific customizations here
-  ;; -- this is unstable right now
-  ;;(srb-adaptive-wrap-mode 1)
   (linum-mode 1)
   (visual-line-mode)
   (imenu-add-menubar-index)
   (hideshowvis-enable)
+  (modify-syntax-entry ?_ "w")
 )
 (defun setup-php ()
-  ; PHP
-  ; Drupal
   (add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\|php\\|inc\\)$" . drupal-mode))
   (add-to-list 'auto-mode-alist '("\\.info" . conf-windows-mode))
 )
 
 (defun my-css-mode ()
   "CSS Mode hook."
+  (message "CSS Mode Activated")
   (interactive)
   (css-mode)
   (set 'tab-width 2)
@@ -45,55 +43,49 @@
   (set 'c-basic-offset 2)
   ;;(srb-adaptive-wrap-mode 1)
   (linum-mode 1)
-  (hideshowvis-enable)
   (visual-line-mode)
-  
-)
+  (modify-syntax-entry ?_ "w"))
+
 (defun setup-css ()
-  (add-to-list 'auto-mode-alist '("\\.css" . my-css-mode))
-)
+  (add-to-list 'auto-mode-alist '("\\.css" . my-css-mode)))
 
 (defun my-js-mode ()
   "Js2 Mode Custom Hook."
   (message "JS2MODE")
   (interactive)
-  (js2-mode)
   (setq js2-auto-indent-p t)
   (setq js2-mirror-mode t)
+  (setq js2-basic-offset 2)
+  (js2-mode)
   (setq tab-width 2)
   (linum-mode 1)
   (visual-line-mode)
-  (hideshowvis-enable)
-  
-)
+  ;; hide show vis does not work with js2mode
+  ;;(hideshowvis-enable)
+  (modify-syntax-entry ?_ "w"))
+
 (defun setup-js ()
   (autoload 'js2-mode "js2" nil t)
-  (add-to-list 'auto-mode-alist '("\\.js" . my-js-mode))
-)
+  (add-to-list 'auto-mode-alist '("\\.js" . my-js-mode)))
 
-;; hideshow +
+;; visual hideshow for code collapsing
 (define-fringe-bitmap 'hs-marker [0 24 24 126 126 24 24 0])
-
 (defcustom hs-fringe-face 'hs-fringe-face
   "*Specify face used to highlight the fringe on hidden regions."
   :type 'face
   :group 'hideshow)
-
 (defface hs-fringe-face
   '((t (:foreground "#4D4D4D" :box (:line-width 2 :color "grey75" :style released-button))))
   "Face used to highlight the fringe on folded regions"
   :group 'hideshow)
-
 (defcustom hs-face 'hs-face
   "*Specify the face to to use for the hidden region indicator"
   :type 'face
   :group 'hideshow)
-
 (defface hs-face
   '((t (:background "#ff8" :box t)))
   "Face to hightlight the ... area of hidden regions"
   :group 'hideshow)
-
 (defun display-code-line-counts (ov)
   (when (eq 'code (overlay-get ov 'hs))
     (let* ((marker-string "*fringe-dummy*")
@@ -106,9 +98,7 @@
       (put-text-property 0 (length display-string) 'face 'hs-face display-string)
       (overlay-put ov 'display display-string)
       )))
-
 (setq hs-set-up-overlay 'display-code-line-counts)
-
 
 ;;; taken from starter-kit-js.el --- Some helpful Javascript helpers
 (eval-after-load 'js2-mode
@@ -183,44 +173,45 @@
                  (continued-expr-p js2-basic-offset)
                  (t 0)))))))
 
+;; ;; -- save undo hist
+;; (defun save-undo-filename (orig-name)
+;;   "given a filename return the file name in which to save the undo list"
+;;   (concat (file-name-directory orig-name)
+;;           "."
+;;           (file-name-nondirectory orig-name)
+;;           ".undo"))
+
+;; (defun save-undo-list ()
+;;   "Save the undo list to a file"
+;;   (save-excursion
+;;     (ignore-errors
+;;       (let ((undo-to-save `(setq buffer-undo-list ',buffer-undo-list))
+;;             (undo-file-name (save-undo-filename (buffer-file-name))))
+;;         (find-file undo-file-name)
+;;         (erase-buffer)
+;;         (let (print-level
+;;               print-length)
+;;           (print undo-to-save (current-buffer)))
+;;         (let ((write-file-hooks (remove 'save-undo-list write-file-hooks)))
+;;           (save-buffer))
+;;         (kill-buffer))))
+;;   nil)
+
+;; (defvar handling-undo-saving t)
+
+;; (defun load-undo-list ()
+;;   "load the undo list if appropriate"
+;;   (ignore-errors
+;;     (when (and
+;;            (not handling-undo-saving)
+;;            (null buffer-undo-list)
+;;            (file-exists-p (save-undo-filename (buffer-file-name))))
+;;       (let* ((handling-undo-saving t)
+;;              (undo-buffer-to-eval (find-file-noselect (save-undo-filename (buffer-file-name)))))
+;;         (eval (read undo-buffer-to-eval))))))
+
+;; (add-hook 'write-file-hooks 'save-undo-list)
+;; (add-hook 'find-file-hook 'load-undo-list)
 
 
-;; -- save undo hist
-(defun save-undo-filename (orig-name)
-  "given a filename return the file name in which to save the undo list"
-  (concat (file-name-directory orig-name)
-          "."
-          (file-name-nondirectory orig-name)
-          ".undo"))
-
-(defun save-undo-list ()
-  "Save the undo list to a file"
-  (save-excursion
-    (ignore-errors
-      (let ((undo-to-save `(setq buffer-undo-list ',buffer-undo-list))
-            (undo-file-name (save-undo-filename (buffer-file-name))))
-        (find-file undo-file-name)
-        (erase-buffer)
-        (let (print-level
-              print-length)
-          (print undo-to-save (current-buffer)))
-        (let ((write-file-hooks (remove 'save-undo-list write-file-hooks)))
-          (save-buffer))
-        (kill-buffer))))
-  nil)
-
-(defvar handling-undo-saving nil)
-
-(defun load-undo-list ()
-  "load the undo list if appropriate"
-  (ignore-errors
-    (when (and
-           (not handling-undo-saving)
-           (null buffer-undo-list)
-           (file-exists-p (save-undo-filename (buffer-file-name))))
-      (let* ((handling-undo-saving t)
-             (undo-buffer-to-eval (find-file-noselect (save-undo-filename (buffer-file-name)))))
-        (eval (read undo-buffer-to-eval))))))
-
-(add-hook 'write-file-hooks 'save-undo-list)
-(add-hook 'find-file-hook 'load-undo-list)
+;;  jhaaass  ddddd     ss dddd    sss jgh dddd  dd  dddd   hgjhg

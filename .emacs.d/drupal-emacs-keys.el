@@ -3,6 +3,7 @@
 (defun my-minibuffer-setup-hook ()
   (my-keys-minor-mode 0)
   (local-set-key (kbd "<escape>") 'keyboard-escape-quit))
+
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook) 
 
 ;;setup a minor mode to contain my key bindings
@@ -48,6 +49,7 @@
 (define-key my-keys-minor-mode-map (kbd "<f3>") 'bm-previous)
 (define-key my-keys-minor-mode-map (kbd "<f4>") 'rgrep)
 (define-key my-keys-minor-mode-map (kbd "<S-f4>") 'rgrep-in-files-in-repository-drupal)
+(define-key my-keys-minor-mode-map (kbd "<C-S-f4>") 'ido-goto-symbol)
 (define-key my-keys-minor-mode-map (kbd "<f5>") 'toggle-windows-split)
 (define-key my-keys-minor-mode-map (kbd "<f6>") 'hsplit-window-switch-buffer)
 (define-key my-keys-minor-mode-map (kbd "<f7>") 'split-window-switch-buffer)

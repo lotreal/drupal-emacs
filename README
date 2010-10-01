@@ -57,8 +57,8 @@ find function definition
 nav C-S-n
 
 smart single window F5
-split frame - F6
-split frame | F7
+split frame | F6
+split frame - F7
 close window F8
 enlarge window - F9
 enlarge window | F10
@@ -71,7 +71,7 @@ prev buffer C-left
 snippit tab
 code completion S-space
 zen coding C-S-x
-jump to function C-S-space
+jump to function C-S-F4
 look up php function C-`
 look up drupal function C-~
 shell C-n

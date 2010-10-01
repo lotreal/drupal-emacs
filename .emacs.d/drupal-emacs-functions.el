@@ -255,3 +255,13 @@ there's a region, all lines that region covers will be duplicated."
   (if (repository-root buffer-file-name)
       (rgrep (concat "function " (current-word)) "*.php *.module *.php *.inc *.js" (repository-root buffer-file-name))
       (rgrep (concat "function " (current-word)) "*" (file-name-directory buffer-file-name))))
+
+(defun replace-globally ()
+  "Run replace-regexp across the whole file, rather than from
+point to the end of the file."
+  (interactive)
+  (let ((before (point)))
+    (goto-char (point-min))
+    (call-interactively 'replace-regexp)
+    (when (= (point) (point-min))
+      (goto-char before))))
