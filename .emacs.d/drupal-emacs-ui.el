@@ -46,6 +46,11 @@
 	(new-file menu-item "New" new-empty-buffer)
 	(make-frame menu-item "New Frame" make-frame-command)
 	(open-file menu-item "Open..." find-file)
+	(open-file-rep menu-item "Open in Project" find-file-in-repository)
+
+	(find-infile menu-item "Find in File" rgrep)
+	(find-infile-rep menu-item "Find in File in Project" rgrep-in-files-in-repository-drupal)
+	
 	(kill-buffer menu-item "Close" close-current-buffer)
 	(separator1 menu-item "--")
 	(save-buffer menu-item "Save" save-buffer)
@@ -95,3 +100,99 @@
 	"File"))
 
 (define-key global-map [menu-bar file] (cons "File" menu-bar-file-menu))
+
+
+;; Creating a new menu pane in the menu bar to the right of "Tools" menu
+(define-key-after
+  global-map
+  [menu-bar mymenu]
+  (cons "Source" (make-sparse-keymap "hoot hoot"))
+  'tools )
+
+;; Creating a menu item, under the menu by the id "[menu-bar mymenu]"
+(define-key
+  global-map
+  [menu-bar mymenu al]
+  '("SVN Commit" . tortoise-svn-commit))
+
+;; creating another menu item
+(define-key
+  global-map
+  [menu-bar mymenu bl]
+  '("SVN Log" . tortoise-svn-commit))
+
+(define-key
+  global-map
+  [menu-bar mymenu cl]
+  '("SVN Commit Repository" . tortoise-svn-commit-repository))
+
+;; creating another menu item
+(define-key
+  global-map
+  [menu-bar mymenu dl]
+  '("SVN Log Repository" . tortoise-svn-log-repository))
+
+;; Creating a menu item, under the menu by the id "[menu-bar mymenu]"
+(define-key
+  global-map
+  [menu-bar mymenu el]
+  '("Git Commit" . tortoise-git-commit))
+
+;; creating another menu item
+(define-key
+  global-map
+  [menu-bar mymenu fl]
+  '("Git Log" . tortoise-git-commit))
+
+(define-key
+  global-map
+  [menu-bar mymenu gl]
+  '("Git Commit Repository" . tortoise-git-commit-repository))
+
+;; creating another menu item
+(define-key
+  global-map
+  [menu-bar mymenu hl]
+  '("Git Log Repository" . tortoise-git-log-repository))
+
+;; creating another menu item
+(define-key
+  global-map
+  [menu-bar mymenu sep]
+  '("----------"))
+
+(define-key
+  global-map
+  [menu-bar mymenu il]
+  '("Lookup Drupal Function" . drupal-search-documentation))
+(define-key
+  global-map
+  [menu-bar mymenu jl]
+  '("Zen Coding" . zencoding-expand-line))
+(define-key
+  global-map
+  [menu-bar mymenu kl]
+  '("PHP Function List" . phpcode-anything))
+(define-key
+  global-map
+  [menu-bar mymenu ll]
+  '("Shell in Current Directory" . shell-here))
+(define-key
+  global-map
+  [menu-bar mymenu ml]
+  '("Comment / Uncomment" . my-comment-dwim))
+
+;; code to remove the whole menu panel
+;;(global-unset-key [menu-bar mymenu])
+
+
+
+
+
+
+
+
+
+
+
+

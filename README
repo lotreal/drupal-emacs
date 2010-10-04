@@ -4,7 +4,7 @@ Drupal Features
 
 * Find in Drupal
 * Drupal Documentation
-* Drupal Project Dwareness
+* Drupal Project Awareness
 * Drupal AutoComplete
 * Drupal Coding Standards
 
@@ -13,20 +13,22 @@ Features
 * Smart Indenting
 * Windows Keyboard Shortcuts
 * Line Numbers
-* History Visual
+* Visual Undo History
 * State Saving
 * IDE like navigation
-* Firefox esc isearch
+* Firefox'esc search functionality
 * Improved occur
 * Smart Cursor
-* ido mode
+* IDO mode
 * cygwin for command line
-* menubar plus
+* Menubar Plus
 * Code Completion
 * Snippits
 * Zen Coding
 * Find File in Project
 * Tortoise SVN
+* Tortoise GIT
+* Custom Menu
 
 Sane Key Config
 
@@ -53,14 +55,12 @@ open file C-o
 find file in project C-S-o
 find in file  F4
 find in file project S-F4
-find function definition
-anything 
 nav C-S-n
 quit C-x C
 
 smart single window F5
-split frame | F6
-split frame - F7
+split window | F6
+split window - F7
 close window F8
 enlarge window - F9
 enlarge window | F10
