@@ -66,6 +66,7 @@ enlarge window - F9
 enlarge window | F10
 
 choose buffer C-space
+choose buffer / file / recent S-F1
 close buffer C-0
 next buffer C-right
 prev buffer C-left
@@ -76,6 +77,7 @@ zen coding C-S-x
 jump to function C-S-F4
 look up php function C-`
 look up drupal function C-~
+emacs function completion S-F4
 shell C-n
 comment C-{
 
