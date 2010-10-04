@@ -54,7 +54,9 @@ find file in project C-S-o
 find in file  F4
 find in file project S-F4
 find function definition
+anything 
 nav C-S-n
+quit C-x C
 
 smart single window F5
 split frame | F6

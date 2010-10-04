@@ -265,3 +265,26 @@ point to the end of the file."
     (call-interactively 'replace-regexp)
     (when (= (point) (point-min))
       (goto-char before))))
+
+(defun buffer-anything ()
+  (interactive)
+  (anything-other-buffer
+   '(anything-c-source-buffers+
+     anything-c-source-bm
+     anything-c-source-recentf
+     anything-c-source-files-in-current-dir+)
+   " *buffer-anything*"))
+
+(defun emacs-anything ()
+  (interactive)
+  (anything-other-buffer
+   '(anything-c-source-emacs-functions
+     anything-c-source-emacs-commands
+     anything-c-source-extended-command-history)
+   " *emacs-anything*"))
+
+(defun phpcode-anything ()
+  (interactive)
+  (anything-other-buffer-php
+   '(anything-c-source-browse-code)
+   " *code-anything*"))

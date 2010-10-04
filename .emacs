@@ -10,7 +10,7 @@
 ;; Turn off mouse interface early in startup to avoid momentary display
 ;; You really don't need these; trust me.
 
-(setq debug-on-error t)
+;;(setq debug-on-error t)
 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
@@ -44,6 +44,7 @@
 (require 'css-complete)
 (require 'saveplace)
 (require 'recentf)
+(require 'anything-config)
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
