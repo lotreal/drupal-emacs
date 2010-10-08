@@ -61,7 +61,7 @@
 	  (region ((t (:background "#27292A"))))
 	  (mode-line ((t (:background "#3B3B3B" :foreground "white"))))
     (mode-line-inactive ((t (:background "#242424" :foreground "#cccddd"))))
-		(mode-line-buffer-id ((t (:foreground "#cccddd" :bold t :weight bold))))
+		(mode-line-buffer-id ((t (:foreground "#ffffff"))))
     (mode-line-emphasis ((t (:foreground "#cccddd" :bold t :weight bold))))
     (highlight ((t (:background "#111111"))))
 	  (highline-face ((t (:background "SeaGreen"))))

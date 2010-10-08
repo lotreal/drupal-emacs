@@ -45,6 +45,7 @@
 (require 'saveplace)
 (require 'recentf)
 (require 'anything-config)
+(require 'http-get)
 
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -174,7 +175,7 @@
 (global-undo-tree-mode)
 ;;(undo-list-transfer-to-tree)
 
-; to answer y or n instead of yes or no :-P ...I'm to lazy
+; to answer y or n instead of yes or no :-P ...I'm too lazy
 (defalias 'yes-or-no-p 'y-or-n-p) 
 
 ;; -- make buffer names unique
@@ -188,13 +189,16 @@
             (set-process-query-on-exit-flag 
               (get-buffer-process (current-buffer)) nil))) 
 
-;; -- fring mode settings
+;; -- fringe mode settings
 (modify-all-frames-parameters
      (list (cons 'left-fringe 15)
 	   (cons 'right-fringe 3)))
 
 ;; -- this is so we can open files in same editor instance
 (server-start)
+
+;; -- prevents the "still has clients" warning message from appearing when closing files
+(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
 ;; -- load ido mode
 (ido-mode t)
@@ -219,6 +223,15 @@
   "Drupal install root directory matching criterion."
   )
 (add-to-list 'repository-root-matchers repository-root-matcher/drupal)
+
+;; Set to the location of your Org files on your local system
+(setq org-directory "~/org")
+;; Set to the name of the file where new notes will be stored
+(setq org-mobile-inbox-for-pull "~/org/flagged.org")
+;; Set to <your Dropbox root directory>/MobileOrg.
+(setq org-mobile-directory "C:/My Dropbox/MobileOrg")
+
+
 
 ;; -- set up window saving !! RUNLAST
 (win:startup-with-window)

@@ -10,17 +10,20 @@ Drupal Features
 
 Features
 
+* Fully configured html / css / php modes
 * Smart Indenting
 * Windows Keyboard Shortcuts
 * Line Numbers
 * Visual Undo History
 * State Saving
+* File backups
+* PHP / CSS / JS Electric Modes
+* Project / VC Awareness
 * IDE like navigation
 * Firefox'esc search functionality
-* Improved occur
 * Smart Cursor
 * IDO mode
-* cygwin for command line
+* Cygwin for command line
 * Menubar Plus
 * Code Completion
 * Snippits
@@ -29,6 +32,18 @@ Features
 * Tortoise SVN
 * Tortoise GIT
 * Custom Menu
+* Code Folding
+* Visual Bookmarks
+* Improved Occur Mode (??)
+* Customized twilight color theme
+* Sane Key Config (Optional)
+
+Pre-Requesets
+
+* Cygwin
+* NTEmacs
+* TortoiseGit
+* TortoiseSVN
 
 Sane Key Config
 
@@ -47,14 +62,15 @@ google C-S-g
 
 isearch C-f
 find-replace C-S-f
+occur on current file ??
 
 save C-s
 rename C-S-s
 new C-space
 open file C-o
 find file in project C-S-o
-find in file  F4
-find in file project S-F4
+find in file F4
+find in file in project S-F4
 nav C-S-n
 quit C-x C
 

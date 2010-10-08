@@ -288,3 +288,24 @@ point to the end of the file."
   (anything-other-buffer-php
    '(anything-c-source-browse-code)
    " *code-anything*"))
+
+(defun syncbasecamp ()
+  (interactive)
+  (http-get "http://floatsolutions.com/docs/basecamp/index.php?accesskey=sdf6SDFwr88sdfASDdye76qw76876DFGDfgsdf" nil 'ignore nil "basecamp.org" nil)
+  (org-mode))
+
+(defun completebasecamp (todoid)
+  (interactive)
+  (http-get (concatenate 'string "http://floatsolutions.com/docs/basecamp/index.php?accesskey=sdf6SDFwr88sdfASDdye76qw76876DFGDfgsdf&complete=" todoid) nil 'ignore nil "basecamp.org" nil)
+  (org-mode))
+  
+(defun basecamp-showlist ()
+  (interactive)
+  (find-file-other-window "C:/ntemacs23/home/org/basecamp.org")
+  (syncbasecamp)
+  )
+
+(defun basecamp-showprojects ()
+  (interactive)
+  (find-file-other-window "C:/ntemacs23/home/org/projects.org")
+  )
